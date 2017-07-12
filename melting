@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jul 11 12:40:20 2017
+
+@author: wodell1
+"""
+
+import pandas as pd
+
+df = pd.read_csv(str(input('Put in the Name of the CSV you want to convert : ')), 
+                 header=0)
+cols = list(df)
+
+for i in cols :
+    df[i] = df[i].fillna('Not Entered', axis = 0)
+
+
+["Client","Project", "Project Code", "Project Label", "Project Tags", "Person", "Team Tags"]
+
+df2 = pd.melt(df, id_vars=["Client","Project", "Project Code", "Project Label", "Project Tags", "Person", "Team Tags"], 
+                  var_name="Date", value_name="Value")
+
+df2.to_csv(str(input('What would you like to name the output? (make sure whatever you write ends in .csv) : ')))
